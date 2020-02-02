@@ -11,7 +11,7 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export const App = () => {
   return (
-    <div className="App">
+    <div className="app-component">
       <Provider store={store}>
         <Managers/>
       </Provider>

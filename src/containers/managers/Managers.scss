@@ -1,0 +1,22 @@
+$base-size: 1rem;
+$color: #576671;
+$bg-color: #f7f6f4;
+
+.managers-component {
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  color: $color;
+
+  .managers-content {
+    flex: 0 1 400px;
+    margin-top: 100px;
+    background-color: $bg-color;
+    padding: $base-size;
+
+    label {
+      display: inline-block;
+      margin-bottom: 0.5 * $base-size;
+    }
+  }
+}

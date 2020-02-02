@@ -1,0 +1,25 @@
+$size: 3rem;
+$radius: .375rem;
+$bg-color: #7FD0C9;
+$color: #FFFFFF;
+
+.avatar-component {
+    display: inline-block;
+    height: $size;
+    width: $size;
+
+    div, img {
+        width: 100%;
+        height: 100%;
+        border-radius: $radius;
+        background-color: $bg-color;
+        color: $color;
+        font-weight: bold;
+        line-height: $size;
+        text-align: center;
+
+        &.hidden {
+            display: none;
+        }
+    }
+}
