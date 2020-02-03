@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import { Managers } from './Managers';
 import { MANAGERS_INITIAL_STATE } from '../../reducers/managers.reducer';
 import { withRedux, withFetchMock } from '../../lib/test.lib';
-import employeesFixture from './__fixtures__/employees';
+import employeesFixture from '../../fixtures/employees';
 
 const url = 'https://gist.githubusercontent.com/daviferreira/41238222ac31fe36348544ee1d4a9a5e/raw/5dc996407f6c9a6630bfcec56eee22d4bc54b518/employees.json';
 

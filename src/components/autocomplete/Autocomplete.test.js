@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import { Autocomplete, KEY_CODES } from './Autocomplete';
-import items from './__fixtures__/items.json';
+import items from '../../fixtures/employeesFlattened';
 
 describe('Autocomplete', () => {
     test('matches snapshot', () => {
