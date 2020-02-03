@@ -1,4 +1,11 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple project with React to implement an Autocomplete component in order to search by Manager's Names and select them.
+
+The project structure is very simple and straightforward because the app is simple itself. The structure is based on the functionality. Accordingly, all actions are in `actions` folder, all reducers are in `reducers` folder and so on.
+
+If app was larger it would make sence to structure project based on Domain, so, for example, Manager domain would have it's own actions, reducers, etc on it's own directory. But for this example it doesn't make sence to do that.
+
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). All of the following instructions and documentations are from the original Readme from CRA.
 
 ## Available Scripts
 
