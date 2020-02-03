@@ -18,7 +18,7 @@ export const Managers = () => {
     <div className="managers-component">
       <div className="managers-content">
         <label>Manager</label>
-        <Autocomplete items={managers} onSelect={(manager) => setManager(manager)} />
+        <Autocomplete items={managers} onSelect={(manager) => setManager(manager)} placeholder="Choose Manager" />
         <h5>Selected manager in parent component: {manager ? manager.name : 'Not selected'}</h5>
       </div>
     </div>

@@ -1,0 +1,513 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Autocomplete matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="autocomplete-component"
+  >
+    <input
+      data-testid="input"
+      placeholder="Search..."
+      value=""
+    />
+    <i
+      class="arrow-down"
+      data-testid="arrow"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Autocomplete matches the snapshot with menu open 1`] = `
+<DocumentFragment>
+  <div
+    class="autocomplete-component"
+  >
+    <input
+      data-testid="input"
+      placeholder="Search..."
+      value=""
+    />
+    <i
+      class="arrow-down active"
+      data-testid="arrow"
+    />
+    <ul
+      class="autocomplete-items"
+      data-testid="items"
+    >
+      <li
+        class="autocomplete-item"
+      >
+        <div
+          class="item-content"
+        >
+          <div
+            class="avatar"
+          >
+            <div
+              class="avatar-component"
+            >
+              <div
+                class="avatar-alt"
+                data-testid="alt"
+              >
+                HM
+              </div>
+              <img
+                alt="Harriet McKinney"
+                class="avatar-image hidden"
+                data-testid="image"
+                src="item.avatar"
+              />
+            </div>
+          </div>
+          <div
+            class="info"
+          >
+            <div
+              class="name"
+            >
+              Harriet McKinney
+            </div>
+            <div
+              class="email"
+            />
+          </div>
+        </div>
+      </li>
+      <li
+        class="autocomplete-item"
+      >
+        <div
+          class="item-content"
+        >
+          <div
+            class="avatar"
+          >
+            <div
+              class="avatar-component"
+            >
+              <div
+                class="avatar-alt"
+                data-testid="alt"
+              >
+                HB
+              </div>
+              <img
+                alt="Harriet Banks"
+                class="avatar-image hidden"
+                data-testid="image"
+                src="item.avatar"
+              />
+            </div>
+          </div>
+          <div
+            class="info"
+          >
+            <div
+              class="name"
+            >
+              Harriet Banks
+            </div>
+            <div
+              class="email"
+            />
+          </div>
+        </div>
+      </li>
+      <li
+        class="autocomplete-item"
+      >
+        <div
+          class="item-content"
+        >
+          <div
+            class="avatar"
+          >
+            <div
+              class="avatar-component"
+            >
+              <div
+                class="avatar-alt"
+                data-testid="alt"
+              >
+                MS
+              </div>
+              <img
+                alt="Mathilda Summers"
+                class="avatar-image hidden"
+                data-testid="image"
+                src="item.avatar"
+              />
+            </div>
+          </div>
+          <div
+            class="info"
+          >
+            <div
+              class="name"
+            >
+              Mathilda Summers
+            </div>
+            <div
+              class="email"
+            >
+              alta.maxwell@kinetar.com
+            </div>
+          </div>
+        </div>
+      </li>
+      <li
+        class="autocomplete-item"
+      >
+        <div
+          class="item-content"
+        >
+          <div
+            class="avatar"
+          >
+            <div
+              class="avatar-component"
+            >
+              <div
+                class="avatar-alt"
+                data-testid="alt"
+              >
+                EW
+              </div>
+              <img
+                alt="Eugene Wong"
+                class="avatar-image hidden"
+                data-testid="image"
+                src="item.avatar"
+              />
+            </div>
+          </div>
+          <div
+            class="info"
+          >
+            <div
+              class="name"
+            >
+              Eugene Wong
+            </div>
+            <div
+              class="email"
+            >
+              harriet.banks@kinetar.com
+            </div>
+          </div>
+        </div>
+      </li>
+      <li
+        class="autocomplete-item"
+      >
+        <div
+          class="item-content"
+        >
+          <div
+            class="avatar"
+          >
+            <div
+              class="avatar-component"
+            >
+              <div
+                class="avatar-alt"
+                data-testid="alt"
+              >
+                NM
+              </div>
+              <img
+                alt="New Manager"
+                class="avatar-image hidden"
+                data-testid="image"
+                src="item.avatar"
+              />
+            </div>
+          </div>
+          <div
+            class="info"
+          >
+            <div
+              class="name"
+            >
+              New Manager
+            </div>
+            <div
+              class="email"
+            />
+          </div>
+        </div>
+      </li>
+      <li
+        class="autocomplete-item"
+      >
+        <div
+          class="item-content"
+        >
+          <div
+            class="avatar"
+          >
+            <div
+              class="avatar-component"
+            >
+              <div
+                class="avatar-alt"
+                data-testid="alt"
+              >
+                MR
+              </div>
+              <img
+                alt="Marguerite Ryan"
+                class="avatar-image hidden"
+                data-testid="image"
+                src="item.avatar"
+              />
+            </div>
+          </div>
+          <div
+            class="info"
+          >
+            <div
+              class="name"
+            >
+              Marguerite Ryan
+            </div>
+            <div
+              class="email"
+            />
+          </div>
+        </div>
+      </li>
+      <li
+        class="autocomplete-item"
+      >
+        <div
+          class="item-content"
+        >
+          <div
+            class="avatar"
+          >
+            <div
+              class="avatar-component"
+            >
+              <div
+                class="avatar-alt"
+                data-testid="alt"
+              >
+                DB
+              </div>
+              <img
+                alt="Donald Butler"
+                class="avatar-image hidden"
+                data-testid="image"
+                src="item.avatar"
+              />
+            </div>
+          </div>
+          <div
+            class="info"
+          >
+            <div
+              class="name"
+            >
+              Donald Butler
+            </div>
+            <div
+              class="email"
+            />
+          </div>
+        </div>
+      </li>
+      <li
+        class="autocomplete-item"
+      >
+        <div
+          class="item-content"
+        >
+          <div
+            class="avatar"
+          >
+            <div
+              class="avatar-component"
+            >
+              <div
+                class="avatar-alt"
+                data-testid="alt"
+              >
+                JC
+              </div>
+              <img
+                alt="Jim Carlson"
+                class="avatar-image hidden"
+                data-testid="image"
+                src="item.avatar"
+              />
+            </div>
+          </div>
+          <div
+            class="info"
+          >
+            <div
+              class="name"
+            >
+              Jim Carlson
+            </div>
+            <div
+              class="email"
+            />
+          </div>
+        </div>
+      </li>
+      <li
+        class="autocomplete-item"
+      >
+        <div
+          class="item-content"
+        >
+          <div
+            class="avatar"
+          >
+            <div
+              class="avatar-component"
+            >
+              <div
+                class="avatar-alt"
+                data-testid="alt"
+              >
+                AM
+              </div>
+              <img
+                alt="Alta Maxwell"
+                class="avatar-image hidden"
+                data-testid="image"
+                src="item.avatar"
+              />
+            </div>
+          </div>
+          <div
+            class="info"
+          >
+            <div
+              class="name"
+            >
+              Alta Maxwell
+            </div>
+            <div
+              class="email"
+            >
+              eugene.wong@kinetar.com
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Autocomplete matches the snapshot with query 1`] = `
+<DocumentFragment>
+  <div
+    class="autocomplete-component"
+  >
+    <input
+      data-testid="input"
+      placeholder="Search..."
+      value="hm"
+    />
+    <i
+      class="arrow-down active"
+      data-testid="arrow"
+    />
+    <ul
+      class="autocomplete-items"
+      data-testid="items"
+    >
+      <li
+        class="autocomplete-item"
+      >
+        <div
+          class="item-content"
+        >
+          <div
+            class="avatar"
+          >
+            <div
+              class="avatar-component"
+            >
+              <div
+                class="avatar-alt"
+                data-testid="alt"
+              >
+                HM
+              </div>
+              <img
+                alt="Harriet McKinney"
+                class="avatar-image hidden"
+                data-testid="image"
+                src="item.avatar"
+              />
+            </div>
+          </div>
+          <div
+            class="info"
+          >
+            <div
+              class="name"
+            >
+              Harriet McKinney
+            </div>
+            <div
+              class="email"
+            />
+          </div>
+        </div>
+      </li>
+      <li
+        class="autocomplete-item"
+      >
+        <div
+          class="item-content"
+        >
+          <div
+            class="avatar"
+          >
+            <div
+              class="avatar-component"
+            >
+              <div
+                class="avatar-alt"
+                data-testid="alt"
+              >
+                MS
+              </div>
+              <img
+                alt="Mathilda Summers"
+                class="avatar-image hidden"
+                data-testid="image"
+                src="item.avatar"
+              />
+            </div>
+          </div>
+          <div
+            class="info"
+          >
+            <div
+              class="name"
+            >
+              Mathilda Summers
+            </div>
+            <div
+              class="email"
+            >
+              alta.maxwell@kinetar.com
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
+`;

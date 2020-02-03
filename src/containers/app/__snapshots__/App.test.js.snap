@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="app-component"
+  >
+    <div
+      class="managers-component"
+    >
+      <div
+        class="managers-content"
+      >
+        <label>
+          Manager
+        </label>
+        <div
+          class="autocomplete-component"
+        >
+          <input
+            data-testid="input"
+            placeholder="Choose Manager"
+            value=""
+          />
+          <i
+            class="arrow-down"
+            data-testid="arrow"
+          />
+        </div>
+        <h5>
+          Selected manager in parent component: Not selected
+        </h5>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

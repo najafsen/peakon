@@ -5,7 +5,7 @@ import './Autocomplete.scss';
 import { Avatar } from '../avatar/Avatar';
 import { createSearchRegex } from '../../lib/regex.lib';
 
-const KEY_CODES = {
+export const KEY_CODES = {
     TAB: 9,
     ENTER: 13,
     ESCAPE: 27,
@@ -13,7 +13,7 @@ const KEY_CODES = {
     ARROW_DOWN: 40
 }
 
-export const Autocomplete = React.memo(({ items, onSelect, placeholder = 'Choose Manager' }) => {
+export const Autocomplete = React.memo(({ items, onSelect, placeholder = 'Search...' }) => {
     const [visibleItems, setVisibleItems] = useState(items);
     const [query, setQuery] = useState('');
     const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +29,8 @@ export const Autocomplete = React.memo(({ items, onSelect, placeholder = 'Choose
 
     const handleDocumentClick = useCallback((e) => {
         if (
+            inputRef.current &&
+            arrowRef.current &&
             !inputRef.current.contains(e.target) &&
             !arrowRef.current.contains(e.target)
         ) {
@@ -109,6 +111,7 @@ export const Autocomplete = React.memo(({ items, onSelect, placeholder = 'Choose
         <div className="autocomplete-component">
 
             <input
+                data-testid="input"
                 ref={inputRef}
                 placeholder={placeholder}
                 value={query}
@@ -118,6 +121,7 @@ export const Autocomplete = React.memo(({ items, onSelect, placeholder = 'Choose
             />
 
             <i
+                data-testid="arrow"
                 ref={arrowRef}
                 className={cx('arrow-down', { active: isOpen })}
                 onClick={() => setIsOpen(!isOpen)}
@@ -125,7 +129,7 @@ export const Autocomplete = React.memo(({ items, onSelect, placeholder = 'Choose
 
             {
                 (isOpen && visibleItems.length) ? (
-                    <ul className="autocomplete-items">
+                    <ul data-testid="items" className="autocomplete-items">
                         {
                             visibleItems.map((item, index) => (
                                 <li
