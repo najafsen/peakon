@@ -5,7 +5,7 @@ import './Autocomplete.scss';
 import { createSearchRegex } from '../../lib/regex.lib';
 import { AutocompleteItem } from './AutocompleteItem';
 
-const VISIBLE_ITEMS = 2;
+export const VISIBLE_ITEMS = 2;
 
 export const KEY_CODES = {
     TAB: 9,
@@ -42,13 +42,25 @@ export const Autocomplete = React.memo(({ items, onSelect, placeholder = 'Search
         }
     }, []);
 
-    const scrollToItem = useCallback((item) => {
+    const scrollToItem = useCallback((itemIndex, direction) => {
         if (!menuRef.current) {
             return;
         }
 
+        const scrollTop = menuRef.current.scrollTop;
+        const scrollHeight = menuRef.current.scrollHeight;
+        const itemHeight = scrollHeight / filteredItems.length;
+        const lastVisibleItemScrollTop = scrollTop + itemHeight * (VISIBLE_ITEMS - 1);
+        const topIndex = direction === 'up' ? itemIndex : Math.max(0, itemIndex - VISIBLE_ITEMS + 1);
+        const newTopToCompare = itemIndex * itemHeight;
+        const newTopToScroll = topIndex * itemHeight;
+
+        if (newTopToCompare >= scrollTop && newTopToCompare <= lastVisibleItemScrollTop) {
+            return;
+        }
+
         menuRef.current.scroll({
-            top: ((VISIBLE_ITEMS - 1) * (menuRef.current.scrollHeight / filteredItems.length)) * (item),
+            top: newTopToScroll,
             behavior: 'smooth'
         });
     }, [filteredItems.length]);
@@ -80,7 +92,7 @@ export const Autocomplete = React.memo(({ items, onSelect, placeholder = 'Search
                 }
                 newActiveItem = activeItem <= 0 ? filteredItems.length - 1 : activeItem - 1;
                 setActiveItem(newActiveItem);
-                setTimeout(() => scrollToItem(newActiveItem));
+                setTimeout(() => scrollToItem(newActiveItem, 'up'));
                 break;
             }
 
@@ -90,7 +102,7 @@ export const Autocomplete = React.memo(({ items, onSelect, placeholder = 'Search
                 }
                 newActiveItem = activeItem === filteredItems.length - 1 ? 0 : activeItem + 1;
                 setActiveItem(newActiveItem);
-                setTimeout(() => scrollToItem(newActiveItem - 1));
+                setTimeout(() => scrollToItem(newActiveItem, 'down'));
                 break;
             }
 

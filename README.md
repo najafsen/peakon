@@ -4,6 +4,7 @@ The project structure is very simple and straightforward because the app is simp
 
 If app was larger it would make sence to structure project based on Domain, so, for example, Manager domain would have it's own actions, reducers, etc on it's own directory. But for this example it doesn't make sence to do that.
 
+**UPDATE ON Tuesday:** My solution was working for having 2 visible items (as expected). I cheated today and added one more commit to support having different amount of visible items. To change the visible items change `VISIBLE_ITEMS` in `Autocomplete.js` and `$visible-items` in `Autocomplete.scss`. However, the better implementation would be to pass `visibleItems` with props.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). All of the following instructions and documentations are from the original Readme from CRA.
 

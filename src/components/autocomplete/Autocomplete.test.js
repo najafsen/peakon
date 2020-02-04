@@ -1,12 +1,14 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
-import { Autocomplete, KEY_CODES } from './Autocomplete';
+import { render, fireEvent, cleanup } from '@testing-library/react';
+import { Autocomplete, KEY_CODES, VISIBLE_ITEMS } from './Autocomplete';
 import items from '../../fixtures/employeesFlattened';
 
 describe('Autocomplete', () => {
     beforeEach(() => {
         window.HTMLElement.prototype.scroll = jest.fn();
     });
+
+    afterEach(cleanup);
 
     test('matches snapshot', () => {
         const { asFragment } = render(<Autocomplete items={items} onSelect={jest.fn()} />);
@@ -78,13 +80,14 @@ describe('Autocomplete', () => {
 
 
     test('pressing arrow down 3 times will open the menu and set scroll', (done) => {
+        jest.spyOn(window.HTMLElement.prototype, 'scrollHeight', 'get').mockReturnValue(728);
         const { queryByTestId } = render(<Autocomplete items={items} onSelect={jest.fn()} />);
         fireEvent.keyDown(queryByTestId('input'), { keyCode: KEY_CODES.ARROW_DOWN });
         fireEvent.keyDown(queryByTestId('input'), { keyCode: KEY_CODES.ARROW_DOWN });
         fireEvent.keyDown(queryByTestId('input'), { keyCode: KEY_CODES.ARROW_DOWN });
         expect(queryByTestId('items')).toBeInTheDocument();
         setTimeout(() => {
-            expect(window.HTMLElement.prototype.scroll).toHaveBeenCalledTimes(3);
+            expect(window.HTMLElement.prototype.scroll).toHaveBeenCalledTimes(3 - VISIBLE_ITEMS);
             done();
         })
     });
@@ -97,13 +100,15 @@ describe('Autocomplete', () => {
     });
 
     test('pressing arrow up 3 times will open the menu and set scroll', (done) => {
+        jest.spyOn(window.HTMLElement.prototype, 'scrollTop', 'get').mockReturnValue(566);
+        jest.spyOn(window.HTMLElement.prototype, 'scrollHeight', 'get').mockReturnValue(728);
         const { queryByTestId } = render(<Autocomplete items={items} onSelect={jest.fn()} />);
         fireEvent.keyDown(queryByTestId('input'), { keyCode: KEY_CODES.ARROW_UP });
         fireEvent.keyDown(queryByTestId('input'), { keyCode: KEY_CODES.ARROW_UP });
         fireEvent.keyDown(queryByTestId('input'), { keyCode: KEY_CODES.ARROW_UP });
         expect(queryByTestId('items')).toBeInTheDocument();
         setTimeout(() => {
-            expect(window.HTMLElement.prototype.scroll).toHaveBeenCalledTimes(3);
+            expect(window.HTMLElement.prototype.scroll).toHaveBeenCalledTimes(3 - VISIBLE_ITEMS + 1);
             done();
         })
     });
