@@ -4,6 +4,10 @@ import { Autocomplete, KEY_CODES } from './Autocomplete';
 import items from '../../fixtures/employeesFlattened';
 
 describe('Autocomplete', () => {
+    beforeEach(() => {
+        window.HTMLElement.prototype.scroll = jest.fn();
+    });
+
     test('matches snapshot', () => {
         const { asFragment } = render(<Autocomplete items={items} onSelect={jest.fn()} />);
         expect(asFragment()).toMatchSnapshot();
@@ -68,23 +72,47 @@ describe('Autocomplete', () => {
 
     test('pressing arrow down will open the menu', () => {
         const { queryByTestId } = render(<Autocomplete items={items} onSelect={jest.fn()} />);
-        fireEvent.keyDown(queryByTestId('input'), {keyCode: KEY_CODES.ARROW_DOWN });
+        fireEvent.keyDown(queryByTestId('input'), { keyCode: KEY_CODES.ARROW_DOWN });
         expect(queryByTestId('items')).toBeInTheDocument();
+    });
+
+
+    test('pressing arrow down 3 times will open the menu and set scroll', (done) => {
+        const { queryByTestId } = render(<Autocomplete items={items} onSelect={jest.fn()} />);
+        fireEvent.keyDown(queryByTestId('input'), { keyCode: KEY_CODES.ARROW_DOWN });
+        fireEvent.keyDown(queryByTestId('input'), { keyCode: KEY_CODES.ARROW_DOWN });
+        fireEvent.keyDown(queryByTestId('input'), { keyCode: KEY_CODES.ARROW_DOWN });
+        expect(queryByTestId('items')).toBeInTheDocument();
+        setTimeout(() => {
+            expect(window.HTMLElement.prototype.scroll).toHaveBeenCalledTimes(3);
+            done();
+        })
     });
 
 
     test('pressing arrow up will open the menu', () => {
         const { queryByTestId } = render(<Autocomplete items={items} onSelect={jest.fn()} />);
-        fireEvent.keyDown(queryByTestId('input'), {keyCode: KEY_CODES.ARROW_UP });
+        fireEvent.keyDown(queryByTestId('input'), { keyCode: KEY_CODES.ARROW_UP });
         expect(queryByTestId('items')).toBeInTheDocument();
     });
 
+    test('pressing arrow up 3 times will open the menu and set scroll', (done) => {
+        const { queryByTestId } = render(<Autocomplete items={items} onSelect={jest.fn()} />);
+        fireEvent.keyDown(queryByTestId('input'), { keyCode: KEY_CODES.ARROW_UP });
+        fireEvent.keyDown(queryByTestId('input'), { keyCode: KEY_CODES.ARROW_UP });
+        fireEvent.keyDown(queryByTestId('input'), { keyCode: KEY_CODES.ARROW_UP });
+        expect(queryByTestId('items')).toBeInTheDocument();
+        setTimeout(() => {
+            expect(window.HTMLElement.prototype.scroll).toHaveBeenCalledTimes(3);
+            done();
+        })
+    });
 
     test('pressing Escape will close the menu', () => {
         const { queryByTestId } = render(<Autocomplete items={items} onSelect={jest.fn()} />);
         fireEvent.click(queryByTestId('arrow'));
         expect(queryByTestId('items')).toBeInTheDocument();
-        fireEvent.keyDown(queryByTestId('input'), {keyCode: KEY_CODES.ESCAPE });
+        fireEvent.keyDown(queryByTestId('input'), { keyCode: KEY_CODES.ESCAPE });
         expect(queryByTestId('items')).toBe(null);
     });
 
@@ -93,7 +121,7 @@ describe('Autocomplete', () => {
         const { queryByTestId } = render(<Autocomplete items={items} onSelect={jest.fn()} />);
         fireEvent.click(queryByTestId('arrow'));
         expect(queryByTestId('items')).toBeInTheDocument();
-        fireEvent.keyDown(queryByTestId('input'), {keyCode: KEY_CODES.TAB });
+        fireEvent.keyDown(queryByTestId('input'), { keyCode: KEY_CODES.TAB });
         expect(queryByTestId('items')).toBe(null);
     });
 
@@ -101,10 +129,10 @@ describe('Autocomplete', () => {
     test('navitgate to second item with keyboard and press Enter will fire onSelect callback and close the menu', () => {
         const onSelect = jest.fn();
         const { queryByTestId } = render(<Autocomplete items={items} onSelect={onSelect} />);
-        fireEvent.keyDown(queryByTestId('input'), {keyCode: KEY_CODES.ARROW_DOWN });
-        fireEvent.keyDown(queryByTestId('input'), {keyCode: KEY_CODES.ARROW_DOWN });
+        fireEvent.keyDown(queryByTestId('input'), { keyCode: KEY_CODES.ARROW_DOWN });
+        fireEvent.keyDown(queryByTestId('input'), { keyCode: KEY_CODES.ARROW_DOWN });
         expect(queryByTestId('items')).toBeInTheDocument();
-        fireEvent.keyDown(queryByTestId('input'), {keyCode: KEY_CODES.ENTER });
+        fireEvent.keyDown(queryByTestId('input'), { keyCode: KEY_CODES.ENTER });
         expect(onSelect).toHaveBeenCalledWith(items[1]);
         expect(queryByTestId('items')).toBe(null);
     });

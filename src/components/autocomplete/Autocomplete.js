@@ -5,6 +5,8 @@ import './Autocomplete.scss';
 import { Avatar } from '../avatar/Avatar';
 import { createSearchRegex } from '../../lib/regex.lib';
 
+const VISIBLE_ITEMS = 2;
+
 export const KEY_CODES = {
     TAB: 9,
     ENTER: 13,
@@ -14,12 +16,13 @@ export const KEY_CODES = {
 }
 
 export const Autocomplete = React.memo(({ items, onSelect, placeholder = 'Search...' }) => {
-    const [visibleItems, setVisibleItems] = useState(items);
+    const [filteredItems, setFilteredItems] = useState(items);
     const [query, setQuery] = useState('');
     const [isOpen, setIsOpen] = useState(false);
     const [activeItem, setActiveItem] = useState(-1);
     const inputRef = useRef(null);
     const arrowRef = useRef(null);
+    const menuRef = useRef(null);
 
     const selectItem = useCallback((item) => {
         setQuery(item.name);
@@ -39,7 +42,20 @@ export const Autocomplete = React.memo(({ items, onSelect, placeholder = 'Search
         }
     }, []);
 
+    const scrollToItem = useCallback((item) => {
+        if (!menuRef.current) {
+            return;
+        }
+
+        menuRef.current.scroll({
+            top: ((VISIBLE_ITEMS - 1) * (menuRef.current.scrollHeight / filteredItems.length)) * (item),
+            behavior: 'smooth'
+        });
+    }, [filteredItems.length]);
+
     const handleInputKeyDown = useCallback((e) => {
+        let newActiveItem = activeItem;
+
         switch (e.keyCode) {
             case KEY_CODES.ENTER: {
                 if (!isOpen) {
@@ -47,7 +63,7 @@ export const Autocomplete = React.memo(({ items, onSelect, placeholder = 'Search
                 }
                 setActiveItem(-1);
                 setIsOpen(false);
-                selectItem(visibleItems[activeItem]);
+                selectItem(filteredItems[activeItem]);
                 break;
             }
 
@@ -62,11 +78,9 @@ export const Autocomplete = React.memo(({ items, onSelect, placeholder = 'Search
                 if (!isOpen) {
                     setIsOpen(true);
                 }
-                if (activeItem <= 0) {
-                    setActiveItem(visibleItems.length - 1);
-                } else {
-                    setActiveItem(activeItem - 1);
-                }
+                newActiveItem = activeItem <= 0 ? filteredItems.length - 1 : activeItem - 1;
+                setActiveItem(newActiveItem);
+                setTimeout(() => scrollToItem(newActiveItem));
                 break;
             }
 
@@ -74,17 +88,15 @@ export const Autocomplete = React.memo(({ items, onSelect, placeholder = 'Search
                 if (!isOpen) {
                     setIsOpen(true);
                 }
-                if (activeItem === visibleItems.length - 1) {
-                    setActiveItem(0);
-                } else {
-                    setActiveItem(activeItem + 1);
-                }
+                newActiveItem = activeItem === filteredItems.length - 1 ? 0 : activeItem + 1;
+                setActiveItem(newActiveItem);
+                setTimeout(() => scrollToItem(newActiveItem - 1));
                 break;
             }
 
             default: break;
         }
-    }, [activeItem, isOpen, selectItem, visibleItems]);
+    }, [activeItem, isOpen, selectItem, filteredItems, scrollToItem]);
 
     const handleInputChange = useCallback(e => {
         if (!isOpen) {
@@ -104,7 +116,7 @@ export const Autocomplete = React.memo(({ items, onSelect, placeholder = 'Search
 
     useEffect(() => {
         const filteredItems = items.filter(item => createSearchRegex(query, 'i').test(item.name));
-        setVisibleItems(filteredItems);
+        setFilteredItems(filteredItems);
     }, [items, query]);
 
     return (
@@ -128,10 +140,14 @@ export const Autocomplete = React.memo(({ items, onSelect, placeholder = 'Search
             />
 
             {
-                (isOpen && visibleItems.length) ? (
-                    <ul data-testid="items" className="autocomplete-items">
+                (isOpen && filteredItems.length) ? (
+                    <ul
+                        data-testid="items"
+                        ref={menuRef}
+                        className="autocomplete-items"
+                    >
                         {
-                            visibleItems.map((item, index) => (
+                            filteredItems.map((item, index) => (
                                 <li
                                     key={item.id}
                                     className={cx('autocomplete-item', { 'active': activeItem === index })}

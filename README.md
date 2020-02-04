@@ -1,4 +1,4 @@
-This is a simple project with React to implement an Autocomplete component in order to search by Manager's Names and select them.
+This is a simple project with React to implement an Autocomplete component in order to search by Manager's Names and select them. You can simply use keyboard `Arrow Up` and `Arrow Down` keys to open and navigate through Autocomplete items. You can also select an Item by pressing `Enter` key and close the menu by pressing `Escape`. You can also close the menu and leave the input by pressing `Tab` key.
 
 The project structure is very simple and straightforward because the app is simple itself. The structure is based on the functionality. Accordingly, all actions are in `actions` folder, all reducers are in `reducers` folder and so on.
 
