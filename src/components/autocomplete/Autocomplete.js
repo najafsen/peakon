@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import './Autocomplete.scss';
-import { Avatar } from '../avatar/Avatar';
 import { createSearchRegex } from '../../lib/regex.lib';
+import { AutocompleteItem } from './AutocompleteItem';
 
 const VISIBLE_ITEMS = 2;
 
@@ -106,9 +106,9 @@ export const Autocomplete = React.memo(({ items, onSelect, placeholder = 'Search
         setQuery(e.target.value);
     }, [isOpen]);
 
-    const handleItemMouseOver = useCallback((i) => (e) => {
-        setActiveItem(i);
-    }, []);
+    const handleItemMouseOver = useCallback((item) => {
+        setActiveItem(filteredItems.indexOf(item));
+    }, [filteredItems]);
 
     useEffect(() => {
         document.addEventListener('click', handleDocumentClick);
@@ -148,22 +148,13 @@ export const Autocomplete = React.memo(({ items, onSelect, placeholder = 'Search
                     >
                         {
                             filteredItems.map((item, index) => (
-                                <li
+                                <AutocompleteItem
                                     key={item.id}
-                                    className={cx('autocomplete-item', { 'active': activeItem === index })}
-                                    onClick={() => { selectItem(item) }}
-                                    onMouseOver={handleItemMouseOver(index)}
-                                >
-                                    <div className="item-content">
-                                        <div className="avatar">
-                                            <Avatar src="item.avatar" name={item.name} />
-                                        </div>
-                                        <div className="info">
-                                            <div className="name">{item.name}</div>
-                                            <div className="email">{item.email}</div>
-                                        </div>
-                                    </div>
-                                </li>
+                                    item={item}
+                                    isActive={activeItem === index}
+                                    onSelect={selectItem}
+                                    onMouseOver={handleItemMouseOver}
+                                />
                             ))
                         }
                     </ul>

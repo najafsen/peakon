@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AutocompleteItem active matches snapshot 1`] = `
+<DocumentFragment>
+  <li
+    class="autocomplete-item active"
+    data-testid="li"
+  >
+    <div
+      class="item-content"
+    >
+      <div
+        class="avatar"
+      >
+        <div
+          class="avatar-component"
+        >
+          <div
+            class="avatar-alt"
+            data-testid="alt"
+          >
+            TN
+          </div>
+          <img
+            alt="The Name"
+            class="avatar-image hidden"
+            data-testid="image"
+            src="the/src"
+          />
+        </div>
+      </div>
+      <div
+        class="info"
+      >
+        <div
+          class="name"
+        >
+          The Name
+        </div>
+        <div
+          class="email"
+        >
+          the@email
+        </div>
+      </div>
+    </div>
+  </li>
+</DocumentFragment>
+`;
+
+exports[`AutocompleteItem default matches snapshot 1`] = `
+<DocumentFragment>
+  <li
+    class="autocomplete-item"
+    data-testid="li"
+  >
+    <div
+      class="item-content"
+    >
+      <div
+        class="avatar"
+      >
+        <div
+          class="avatar-component"
+        >
+          <div
+            class="avatar-alt"
+            data-testid="alt"
+          >
+            TN
+          </div>
+          <img
+            alt="The Name"
+            class="avatar-image hidden"
+            data-testid="image"
+            src="the/src"
+          />
+        </div>
+      </div>
+      <div
+        class="info"
+      >
+        <div
+          class="name"
+        >
+          The Name
+        </div>
+        <div
+          class="email"
+        >
+          the@email
+        </div>
+      </div>
+    </div>
+  </li>
+</DocumentFragment>
+`;
